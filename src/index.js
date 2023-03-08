@@ -111,22 +111,8 @@ function showTemperature(response) {
 
   let cityDate = response.data.dt * 1000;
   let now = new Date(cityDate);
-
   let time = document.querySelector("p.time");
-  let days = [
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-  ];
+
   function hour() {
     let Hours = now.getHours();
     if (Hours < 10) {
@@ -143,22 +129,7 @@ function showTemperature(response) {
       return Min;
     }
   }
-  time.innerHTML = days[now.getDay()] + ", " + hour() + ":" + min();
-
-  let firstDay = document.querySelector("#dayOne");
-  firstDay.innerHTML = days[now.getDay() + 1];
-
-  let secondtDay = document.querySelector("#dayTwo");
-  secondtDay.innerHTML = days[now.getDay() + 2];
-
-  let thirdDay = document.querySelector("#dayThree");
-  thirdDay.innerHTML = days[now.getDay() + 3];
-
-  let forthDay = document.querySelector("#dayFour");
-  forthDay.innerHTML = days[now.getDay() + 4];
-
-  let fifthDay = document.querySelector("#dayFive");
-  fifthDay.innerHTML = days[now.getDay() + 5];
+  time.innerHTML = formatDay(response.data.dt) + ", " + hour() + ":" + min();
 
   // F and C button
   function Farenheit(event) {
@@ -192,69 +163,39 @@ function showTemperature(response) {
 }
 
 // forecast
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+  return days[day];
+}
 function forecast(response) {
-  let firstDayTemp = document.querySelector("#dayOneTemp");
-  firstDayTemp.innerHTML = `${Math.round(
-    response.data.daily[0].temperature.maximum
-  )}° / ${Math.round(response.data.daily[0].temperature.maximum)}°`;
-
-  let firstDayEmoji = document.querySelector("#emojiDayOne");
-  firstDayEmoji.setAttribute("src", response.data.daily[0].condition.icon_url);
-  firstDayEmoji.setAttribute(
-    "alt",
-    response.data.daily[0].condition.description
-  );
-
-  let secondtDayTemp = document.querySelector("#dayTwoTemp");
-  secondtDayTemp.innerHTML = `${Math.round(
-    response.data.daily[1].temperature.maximum
-  )}° / ${Math.round(response.data.daily[1].temperature.minimum)}°`;
-
-  let secondDayEmoji = document.querySelector("#emojiDayTwo");
-  secondDayEmoji.setAttribute("src", response.data.daily[1].condition.icon_url);
-  secondDayEmoji.setAttribute(
-    "alt",
-    response.data.daily[1].condition.description
-  );
-
-  let thirdDayTemp = document.querySelector("#dayThreeTemp");
-  thirdDayTemp.innerHTML = `${Math.round(
-    response.data.daily[2].temperature.maximum
-  )}° / ${Math.round(response.data.daily[2].temperature.minimum)}°`;
-
-  let thirdDayEmoji = document.querySelector("#emojiDayThree");
-  thirdDayEmoji.setAttribute("src", response.data.daily[2].condition.icon_url);
-  thirdDayEmoji.setAttribute(
-    "alt",
-    response.data.daily[2].condition.description
-  );
-
-  let forthDayTemp = document.querySelector("#dayFourTemp");
-  forthDayTemp.innerHTML = `${Math.round(
-    response.data.daily[3].temperature.maximum
-  )}° / ${Math.round(response.data.daily[3].temperature.minimum)}°`;
-
-  let forthDayEmoji = document.querySelector("#emojiDayFour");
-  forthDayEmoji.setAttribute("src", response.data.daily[3].condition.icon_url);
-  forthDayEmoji.setAttribute(
-    "alt",
-    response.data.daily[3].condition.description
-  );
-
-  let fifthDayTemp = document.querySelector("#dayFiveTemp");
-  fifthDayTemp.innerHTML = `${Math.round(
-    response.data.daily[4].temperature.maximum
-  )}° / ${Math.round(response.data.daily[4].temperature.minimum)}°`;
-
-  let fifthDayEmoji = document.querySelector("#emojiDayFive");
-  fifthDayEmoji.setAttribute("src", response.data.daily[4].condition.icon_url);
-  fifthDayEmoji.setAttribute(
-    "alt",
-    response.data.daily[4].condition.description
-  );
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector(".forecast");
+  let forecastHTML = `<div class="row" id="cards">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `
+                <div class="card" style="width: 6rem" id="card">
+                  <img src="${
+                    forecastDay.condition.icon_url
+                  }" alt="" id="emojiDayOne" />
+                  <span class="days">${formatDay(forecastDay.time)}</span>
+                  <span class="daysTemp" id="dayOneTemp">${Math.round(
+                    forecastDay.temperature.maximum
+                  )}° / ${Math.round(forecastDay.temperature.minimum)}°</span>
+                </div>
+  `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
+// current icon
 function currentIcon(response) {
   let iconElement = document.querySelector("header .CurrentEmoji");
   let icon = response.data.condition.icon;
