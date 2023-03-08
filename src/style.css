@@ -1,0 +1,168 @@
+a {
+  font-family: "Dancing Script", cursive;
+  text-decoration: none;
+}
+body {
+  font-family: "Noto Serif JP", serif;
+  margin-top: 70px;
+  text-align: center;
+  margin-left: 220px;
+  margin-right: 220px;
+}
+hr {
+  border-top: 2px dashed black;
+}
+li {
+  list-style: none;
+  line-height: 30px;
+}
+
+#background-color {
+  background: linear-gradient(
+    180deg,
+    rgb(221, 221, 221) 5.5%,
+    rgb(60, 90, 120) 90.2%
+  );
+  border-radius: 20px;
+}
+#button {
+  font-size: 20px;
+  position: relative;
+  top: -50px;
+}
+#card {
+  border: inherit;
+  border-radius: 20px;
+  margin: auto;
+  padding: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(221, 221, 221, 0.5) 5.5%,
+    rgb(60, 90, 120) 90.2%
+  );
+}
+#city {
+  background-color: inherit;
+  line-height: 50px;
+  font-size: 16px;
+}
+#city:hover {
+  font-weight: bold;
+  font-size: 25px;
+}
+#currentCity {
+  font-size: 60px;
+}
+#emojis {
+  position: relative;
+  right: -15px;
+}
+#MaxMin {
+  font-size: 40px;
+  font-weight: bold;
+}
+#menu {
+  font-size: 40px;
+  margin: 10px;
+  position: absolute;
+  top: 4px;
+  left: 7px;
+}
+#menu:hover {
+  font: status-bar;
+}
+#menu-bar {
+  background: linear-gradient(
+    0deg,
+    rgb(221, 221, 221) 5.5%,
+    rgb(60, 90, 120) 90.2%
+  );
+  border-radius: 20px;
+  width: 300px;
+  text-align: left;
+}
+#search-box {
+  font-family: "Dancing Script", cursive;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  margin: auto;
+  border-radius: 20px;
+  border: 0px;
+  text-align: center;
+}
+
+.bold-hover {
+  border: 0px;
+  padding: 0px;
+}
+.C-F {
+  background-color: inherit;
+  border: 0px;
+}
+.CurrentEmoji {
+  position: relative;
+  right: 120px;
+}
+.detail {
+  text-align: left;
+}
+.Fa {
+  opacity: 0.5;
+  font-size: 15px;
+}
+.Favorite-City {
+  font-size: 22px;
+  padding: 20px;
+}
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+}
+.Manage {
+  color: rgb(221, 221, 221);
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 16px;
+  background-color: rgb(34, 34, 34);
+  border-radius: 30px;
+  border: 1px solid rgb(60, 90, 120);
+  box-shadow: 2px 4px 4px rgba(34, 34, 34, 30%);
+  transition: all 150ms ease;
+}
+.Manage:hover {
+  color: rgb(34, 34, 34);
+  border: 1px solid rgb(34, 34, 34);
+  background-color: rgb(221, 221, 221);
+}
+.removeSpace {
+  position: relative;
+  top: -45px;
+}
+.searchButton {
+  position: relative;
+  top: -33px;
+  left: -90px;
+  border-radius: 50px;
+  background-color: #ffffff00;
+  border: 0px;
+}
+.temperature {
+  font-size: 100px;
+  position: relative;
+  left: 0px;
+}
+
+section,
+form {
+  text-align: center;
+}
+header,
+form,
+#cards {
+  padding: 30px;
+}
+.bold-hover:hover,
+.time,
+#description {
+  font-size: 25px;
+}
