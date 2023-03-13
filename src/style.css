@@ -4,10 +4,10 @@ a {
 }
 body {
   font-family: "Noto Serif JP", serif;
-  margin-top: 70px;
+  margin: 70px auto;
   text-align: center;
-  margin-left: 220px;
-  margin-right: 220px;
+  max-width: 1050px;
+  display: block;
 }
 hr {
   border-top: 2px dashed black;
